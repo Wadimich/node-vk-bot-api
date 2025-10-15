@@ -2,10 +2,11 @@ const { expect } = require('chai');
 const VkBot = require('../lib');
 
 const bot = new VkBot(process.env.TOKEN);
+const userId = Number(process.env.USER_ID);
 
 describe('execute', () => {
   it('should execute one request', async () => {
-    const response = await bot.execute('users.get', { user_id: 145003487 });
+    const response = await bot.execute('users.get', { user_id: userId });
 
     expect(response).to.be.an('array');
     expect(response[0].id).to.be.a('number');
@@ -14,7 +15,7 @@ describe('execute', () => {
   });
 
   it('should execute 24 requests with one failed', (done) => {
-    Array(24).fill(null).map(() => bot.execute('users.get', { user_id: 145003487 }));
+    Array(24).fill(null).map(() => bot.execute('users.get', { user_id: userId }));
 
     bot.execute('wall.post', {}).catch((err) => {
       expect(err).to.be.a('error');
@@ -27,8 +28,8 @@ describe('execute', () => {
 
   it('should execute messages.send', async () => {
     const response = await bot.execute('messages.send', {
-      peer_id: 145003487,
-      random_id: Math.random(),
+      peer_id: userId,
+      random_id: Math.floor(Math.random() * 1e18),
       message: 'test',
     });
 

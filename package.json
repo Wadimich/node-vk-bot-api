@@ -1,6 +1,6 @@
 {
   "name": "node-vk-bot-api",
-  "version": "3.5.0",
+  "version": "3.5.1",
   "description": "🤖 VK bot framework for Node.js, based on Bots Long Poll API and Callback API",
   "main": "lib/index.js",
   "scripts": {
@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/node-vk-bot-api/node-vk-bot-api#readme",
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^1.12.0"
   },
   "directories": {
     "example": "examples"
